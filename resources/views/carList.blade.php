@@ -14,6 +14,20 @@
                     </div>
                 @endif
                 <h4 class="text-muted text-center py-3">خودروها</h4>
+                <div class="d-flex flex-column">
+                <span>بیشترین استان پلاک ثبت شده : 
+                  @foreach ($maxCount as $max)
+                    
+                  {{$max->city_plak}},
+                  @endforeach
+                  </span>
+                  <span>کمترین استان پلاک ثبت شده :
+                  @foreach ($minCount as $min)
+                    
+                   {{$min->city_plak}},
+                  @endforeach
+                  </span>
+                </div>
                 <div class="col-lg-12">
                   <div class="row flex flex-row-reverse justify-content-between">
                   <div class="col-lg-4 text-end m-2">

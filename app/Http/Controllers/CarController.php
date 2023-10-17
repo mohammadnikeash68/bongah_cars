@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Car;
 use App\Models\User;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
 class CarController extends Controller
 {
     /**
@@ -15,12 +15,15 @@ class CarController extends Controller
      */
     public function index()
     {
+        $count = DB::table('cars')
+        ->select('city_plak',DB::raw('COUNT(city_plak) as count'))
+        ->groupBy('city_plak')
+        ->orderBy('count','desc')
+        ->get();
+        $maxCount = $count->where('count',$count->first()->count);
+        $minCount = $count->where('count',$count->last()->count);
         $res = Car::all();
-        // $res = User::where('name','like',);
-        // $logs = $this->Log->where('action_type','like',"%$this->search%")->orWhere('description','like',"%$this->search%")->paginate(4);
-
-  
-        return view('carList',compact('res'));
+        return view('carList',compact('res','maxCount','minCount'));
     }
 
     /**
@@ -111,10 +114,8 @@ class CarController extends Controller
         return redirect()->route('cars.index')->with('status','حذف با موفقیت انجام شد');
     }
     public function filter(Request $request){
-                // $logs = $this->Log->where('action_type','like',"%$this->search%")->orWhere('description','like',"%$this->search%")->paginate(4);
 
         $filter_users = User::where('name','like','%'.$request->filter.'%')->get();
-        // dd($filter_users);
         return view('carList',compact('filter_users'));
     }
 }
