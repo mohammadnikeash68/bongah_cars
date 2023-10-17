@@ -9,14 +9,14 @@
             <span>محمد نیک عیش</span>
           </a>
           <ul class="navbar-nav flex-column my-3 list-unstyled">
-            <li class="nav-item py-2">
+            <!-- <li class="nav-item py-2">
               <a href="#" class="nav-link text-light d-block active">
                 <i class="fas fa-home-lg me-2"></i>
                 <span>داشبورد</span>
               </a>
-            </li>
+            </li> -->
             <li class="nav-item py-2">
-              <a href="#" class="nav-link text-light d-block">
+              <a href="{{route('cars.index')}}" class="nav-link text-light d-block">
                 <i class="fas fa-user-circle me-2"></i>
                 <span>خودروها</span>
               </a>

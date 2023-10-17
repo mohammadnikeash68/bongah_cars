@@ -13,5 +13,4 @@ use App\Models\Car;
 |
 */
 
-
 Route::resource('cars','App\Http\Controllers\CarController');
