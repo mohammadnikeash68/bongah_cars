@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Models\Car;
+use App\Http\Controllers\CarController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,3 +15,4 @@ use App\Models\Car;
 */
 
 Route::resource('cars','App\Http\Controllers\CarController');
+Route::post('/cars/search',[CarController::class,'filter'])->name('car.filter');

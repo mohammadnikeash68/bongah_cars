@@ -22,7 +22,11 @@
                     </a>
                   </div>
                   <div class="col-lg-6">
-                    <input type="text" name="search" placeholder="جستجو براساس نام مالک خودرو..." class="form-control"/>
+                    <form action="{{route('car.filter')}}" method="post" class="d-flex">
+                      @csrf
+                      <input type="text" name="filter" placeholder="فیلتر براساس نام صاحب خودرو..." class="form-control"/>
+                      <input type="submit" name="btn_filter" value="فیلتر" class="btn btn-primary ms-2"/>
+                    </form>
                   </div>
                   </div>
                 </div>
@@ -40,6 +44,42 @@
                     </tr>
                   </thead>
                   <tbody>
+                    @isset($filter_users)
+                      @foreach ($filter_users as $user )
+                        @php
+                          $cars_user = $user->cars;
+                          $i = 0
+                          @endphp
+                          @foreach ($cars_user as $val)
+                          @php
+                            $i++;
+                          @endphp
+                    
+                      <tr>
+                        <td>{{$i}}</td>
+                        <td>{{$val->name}}</td>
+                        <td>{{$val->color}}</td>
+                        <td>{{$val->city_plak}}</td>
+                        <td>{{$user->name}}</td>
+                        <td>{{$user->lastname}}</td>
+                        <td>{{$val->created_at}}</td>
+                        <td class="d-flex">
+                        
+                          <form action="{{route('cars.destroy',$val)}}" method="post">
+                            @csrf
+                            @method('delete')
+                            <button  class="btn btn-danger btn-sm me-2">
+                               حذف
+                            </button>
+                          </form>
+                          <a href="{{route('cars.edit',$val)}}" class="btn btn-success btn-sm">
+                            ویرایش
+                          </a>
+                        </td>
+                      </tr>
+                          @endforeach
+                      @endforeach
+                    @else  
                     @php
                       $i = 0
                     @endphp
@@ -61,7 +101,7 @@
                           <form action="{{route('cars.destroy',$val)}}" method="post">
                             @csrf
                             @method('delete')
-                            <button  class="btn btn-danger btn-sm">
+                            <button  class="btn btn-danger me-2 btn-sm">
                                حذف
                             </button>
                           </form>
@@ -71,6 +111,8 @@
                         </td>
                       </tr>
                     @endforeach
+                    @endisset
+                    
                     
                   </tbody>
                 </table>

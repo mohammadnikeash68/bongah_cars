@@ -110,4 +110,11 @@ class CarController extends Controller
         $car->delete();
         return redirect()->route('cars.index')->with('status','حذف با موفقیت انجام شد');
     }
+    public function filter(Request $request){
+                // $logs = $this->Log->where('action_type','like',"%$this->search%")->orWhere('description','like',"%$this->search%")->paginate(4);
+
+        $filter_users = User::where('name','like','%'.$request->filter.'%')->get();
+        // dd($filter_users);
+        return view('carList',compact('filter_users'));
+    }
 }

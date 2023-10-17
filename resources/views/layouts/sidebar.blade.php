@@ -5,7 +5,7 @@
             <span>لوگو</span>
           </a>
           <a href="#" class="py-3 border-bottom border-light border-opacity-50 nav-link d-block">
-            <img src="assets/image/avatar-s-23.jpg" class="rounded-circle me-2" width="50px" />
+            <img src="/assets/image/avatar-s-23.jpg" class="rounded-circle me-2" width="50px" />
             <span>محمد نیک عیش</span>
           </a>
           <ul class="navbar-nav flex-column my-3 list-unstyled">
@@ -17,7 +17,7 @@
             </li> -->
             <li class="nav-item py-2">
               <a href="{{route('cars.index')}}" class="nav-link text-light d-block">
-                <i class="fas fa-user-circle me-2"></i>
+                <i class="fas fa-car me-2"></i>
                 <span>خودروها</span>
               </a>
             </li>
