@@ -16,16 +16,22 @@
                 <h4 class="text-muted text-center py-3">خودروها</h4>
                 <div class="d-flex flex-column">
                 <span>بیشترین استان پلاک ثبت شده : 
-                  @foreach ($maxCount as $max)
+                  @isset($maxCount)
                     
-                  {{$max->city_plak}},
-                  @endforeach
+                    @foreach ($maxCount as $max)
+                      
+                    {{$max->city_plak}},
+                    @endforeach
+                  @endisset
                   </span>
                   <span>کمترین استان پلاک ثبت شده :
-                  @foreach ($minCount as $min)
-                    
-                   {{$min->city_plak}},
-                  @endforeach
+                  @isset($minCount)
+                    @foreach ($minCount as $min)
+                      
+                      {{$min->city_plak}},
+                    @endforeach
+                  @endisset
+                  
                   </span>
                 </div>
                 <div class="col-lg-12">
@@ -86,6 +92,7 @@
                                حذف
                             </button>
                           </form>
+                         
                           <a href="{{route('cars.edit',$val)}}" class="btn btn-success btn-sm">
                             ویرایش
                           </a>
@@ -97,6 +104,7 @@
                     @php
                       $i = 0
                     @endphp
+                    @isset($res)
                     @foreach ($res as $val)
                       @php
                         $i++;
@@ -112,10 +120,11 @@
                         <td>{{$val->created_at}}</td>
                         <td class="d-flex">
                         
+                        
                           <form action="{{route('cars.destroy',$val)}}" method="post">
                             @csrf
                             @method('delete')
-                            <button  class="btn btn-danger me-2 btn-sm">
+                            <button id="deleteButton"  class="btn btn-danger me-2 btn-sm">
                                حذف
                             </button>
                           </form>
@@ -125,6 +134,12 @@
                         </td>
                       </tr>
                     @endforeach
+                    @else
+                    <tr>
+                      <td colspan="5">هیچ رکوردی وجود ندارد</td>
+                    </tr>
+                    @endisset
+                    
                     @endisset
                     
                     
@@ -158,4 +173,6 @@
         </div>
       </div>
     </section>
+ 
+
     @endsection

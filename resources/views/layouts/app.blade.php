@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="/assets/css/bootstrap.rtl.min.css" />
   <link rel="stylesheet" href="/assets/fonts/fontawesome-free-6.2.1-web/css/all.css" />
   <link rel="stylesheet" href="/assets/css/style.css" />
-
+  
   <title>پنل مدیریت</title>
 </head>
 
@@ -35,8 +35,14 @@
  @include('layouts.footer')
  <script src="assets/js/bootstrap.bundle.min.js"></script>
  <script src="assets/js/jquery.min.js"></script>
- 
 
+<!-- <script>
+$(document).ready(function(){
+  $(".deleteButton").click(function(){
+    alert('kjsdf')
+  })
+})
+</script> -->
 </body>
 
 </html>
